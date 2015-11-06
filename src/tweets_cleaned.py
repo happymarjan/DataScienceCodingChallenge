@@ -17,7 +17,7 @@ def clearTweet(s):
     s = s.replace('\\t', ' ')
     
     #replace multiple consecutive spaces with only one space
-    s = ' '.join(s.split())
+    #s = ' '.join(s.split())
     
     #first remove unicodes and then replace remaining escape characters
     result = r3.sub(r'',s)
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     
     getRelPaths = lambda x: os.path.abspath(os.path.join(parentPath, x))
     
-    inpFile = getRelPaths('tweet_input/tweets.txt')
+    inpFile = getRelPaths('tweet_input/tweets3.txt')
     
     outFileF1 = getRelPaths('tweet_output/ft1.txt') 
     
@@ -68,7 +68,7 @@ if __name__ == '__main__':
                 cleanedResList.append(finalResult)
                 
                 #print(finalResult)
-                #print'*****'
+                #print('*****')
         
         for item in cleanedResList:
             outCleanedTweets.write(item+'\n')

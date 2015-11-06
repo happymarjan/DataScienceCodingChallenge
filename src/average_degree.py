@@ -15,7 +15,7 @@ def clearTweet(s):
     s = s.replace('\\t', ' ')
     
     #replace multiple consecutive spaces to only one space 
-    s = ' '.join(s.split())
+    #s = ' '.join(s.split())
     
     #first remove unicodes and then replace remaining escape characters
     result = r3.sub(r'',s)
@@ -45,7 +45,7 @@ if __name__ == '__main__':
     parentPath = (os.path.dirname(currentPath))
     getRelPaths = lambda x: os.path.abspath(os.path.join(parentPath, x))
     
-    inpFile = getRelPaths('tweet_input/tweets.txt')
+    inpFile = getRelPaths('tweet_input/tweets3.txt')    
     
     outFileF2 = getRelPaths('tweet_output/ft2.txt')
     
@@ -99,6 +99,11 @@ if __name__ == '__main__':
                       
                     #and finally remove old time epochs from the dictionary keys  
                     hashtagsDict.pop(t, None)
+                  
+                #The dict is ordered(and tweets are time-ordered based on spec.), so as soon as I get to a key with a time epoch larger than the allowed minimum, I break from the loop and stop further time tests  
+                else:
+                    break
+                    
             
             
             #Lets define all different combinations of hashtag pairs. (The order of hashtag pairs does not matter, so I use combinations for this task)
@@ -114,7 +119,7 @@ if __name__ == '__main__':
                     tagTuple = (pair0,pair1)
                 else:
                     tagTuple = (pair1,pair0)
-                ##print tagTuple
+                ##print (tagTuple)
           
                 #here is where the aforementioned ordered dictionary gets filled
                 hashtagsDict.setdefault(timestampInEpoch,[]).append(tagTuple)
@@ -138,7 +143,7 @@ if __name__ == '__main__':
             if degreeDictLen > 0:
                 totalDegree = round(totalDegree/degreeDictLen,2)
                 
-                ##print totalDegree
+                ##print (totalDegree)
                 
                 #writing the average degree to the file
                 outAvgHashtags.write(str(totalDegree) + '\n')

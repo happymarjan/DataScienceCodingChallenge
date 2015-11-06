@@ -46,7 +46,7 @@ if __name__ == '__main__':
     
     getRelPaths = lambda x: os.path.abspath(os.path.join(parentPath, x))
     
-    inpFile = getRelPaths('tweet_input/tweets3.txt')
+    inpFile = getRelPaths('tweet_input/tweets.txt')
     
     outFileF1 = getRelPaths('tweet_output/ft1.txt') 
     
